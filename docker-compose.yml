@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  api-gateway:
+    build: ./api-gateway
+    ports:
+      - "3000:3000"
+    depends_on:
+      - auth
+      - booking
+
+  auth:
+    build: ./auth-service
+    ports:
+      - "3004:3004"
+
+  booking:
+    build: ./booking-service
+    ports:
+      - "3001:3001"
+
+  otp:
+    build: ./otp-service
+    ports:
+      - "3002:3002"
+
+  payment:
+    build: ./payment-service
+    ports:
+      - "3003:3003"
+
+  redis:
+    image: redis
